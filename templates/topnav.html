@@ -4,24 +4,20 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header bg-info text-white">
-    
+
                     Welcome {{user.username}}
-                
+
                 </div>
                 <div class="card-body">
-                    <marquee behavior="" direction="">
+                    <div>
                         {% if user.is_authenticated and user.is_staff and user.is_superuser %}
                         <h3 class="my-4">Welcome Admin!</h3>
-                        {% else %}
-                        {% if message %}
-                        {% for msg in message %}
+                        {% else %} {% if message %} {% for msg in message %}
                         <h3 class="my-4" style="color:indianred">{{msg}}</h3>
-                        {% endfor %}
-                        {% else %}
+                        {% endfor %} {% else %}
                         <h3 class="my-4" style="color:forestgreen">You are Good to go!</h3>
-                        {% endif %}
-                        {%endif%}
-                    </marquee>
+                        {% endif %} {%endif%}
+                    </div>
                 </div>
             </div>
         </div>
@@ -29,40 +25,38 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header bg-info text-white">
-                    Admin's Activity
+                    Menu Admin
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-4">
                             <a class="text-decoration-none text-dark" href="{% url 'staff' %}">
                                 <div class="card my-card shadow text-center p-5">
-                                    <h4>View<i class="fas fa-users"></i></h4>
-                                    <h5>Staffs' Details</h5>
+                                    <h5>Detail Staf</h5>
                                 </div>
                             </a>
                         </div>
                         <div class="col-md-4">
                             <a class="text-decoration-none text-dark" href="{% url 'attendance-admin' %}">
                                 <div class="card my-card shadow text-center p-5">
-                                    <h4>Staffs'<i class="fas fa-box"></i></h4>
-                                    <h5>Attendance Details</h5>
+                                    <h5>Detail Absen Staff</h5>
                                 </div>
                             </a>
                         </div>
                         <div class="col-md-4">
                             <div style="margin-bottom: 10px;">
-                                <a class="text-decoration-none text-dark"  href="{% url 'attendance-in' %}">
+                                <a class="text-decoration-none text-dark" href="{% url 'attendance-in' %}">
                                     <div class="card my-card shadow text-center p-0.5">
-                                        <h4>Take Attendance <i class="fas fa-shipping-fast"></i></h4>
-                                        <h3>In</h3>
+                                        <h4>Ambil Absen<i class="fas fa-shipping-fast"></i></h4>
+                                        <h3>Masuk</h3>
                                     </div>
                                 </a>
                             </div>
                             <div style="margin-top: 10px;">
-                                <a class="text-decoration-none text-dark" href="{% url 'attendance-out' %}"  >
+                                <a class="text-decoration-none text-dark" href="{% url 'attendance-out' %}">
                                     <div class="card my-card shadow text-center p-0.5">
-                                        <h4>Take Attendance <i class="fas fa-shipping-fast"></i></h4>
-                                        <h3>Out</h3>
+                                        <h4>Ambil Absen <i class="fas fa-shipping-fast"></i></h4>
+                                        <h3>Keluar</h3>
                                     </div>
                                 </a>
                             </div>
@@ -76,32 +70,29 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header bg-info text-white">
-                    Staff's Activity
+                    Menu Staff
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-4">
                             <a class="text-decoration-none text-dark" href="{% url 'staff-staff' %}">
                                 <div class="card my-card shadow text-center p-5">
-                                    <h4>Your<i class="fas fa-users"></i></h4>
-                                    <h5>Attendance Details</h5>
+                                    <h5>Details Absensi</h5>
                                 </div>
                             </a>
                         </div>
                         <div class="col-md-4">
                             <div style="margin-bottom: 10px;">
-                                <a class="text-decoration-none text-dark"  href="{% url 'add-photo' %}">
+                                <a class="text-decoration-none text-dark" href="{% url 'add-photo' %}">
                                     <div class="card my-card shadow text-center p-0.5">
-                                        <h4>Add Photos <i class="fas fa-shipping-fast"></i></h4>
-                                        <h5>for attendance</h5>
+                                        <h5>Tambah Foto Untuk Absensi</h5>
                                     </div>
                                 </a>
                             </div>
                             <div style="margin-top: 10px;">
-                                <a class="text-decoration-none text-dark" href="{% url 'delete-photo' %}"  >
+                                <a class="text-decoration-none text-dark" href="{% url 'delete-photo' %}">
                                     <div class="card my-card shadow text-center p-0.5">
-                                        <h4>Delete Photos <i class="fas fa-shipping-fast"></i></h4>
-                                        <h5>to reupload your photos</h5>
+                                        <h5>Hapus & Reupload photo</h5>
                                     </div>
                                 </a>
                             </div>
@@ -111,27 +102,23 @@
                             {% if trained %}
                             <a class="text-decoration-none text-dark" href="{% url 'train-data' %}">
                                 <div class="card my-card shadow text-center p-5">
-                                    <h5>Train the Dataset<i class="fas fa-box"></i></h5>
+                                    <h5>Train Dataset<i class="fas fa-box"></i></h5>
                                     {% if messages_ %}
                                     <h6>
                                         {{ messages_ }}
-                        
+
                                     </h6>
-                                    
+
                                     {% endif %}
 
-                                    
+
                                 </div>
                             </a>
-                            {% endif %}
-                            {% if messages %}
-                            {% for message in messages%}
-                            <div class="alert alert-{{message.tags}} text-center p-3" > {{message}}
+                            {% endif %} {% if messages %} {% for message in messages%}
+                            <div class="alert alert-{{message.tags}} text-center p-3"> {{message}}
                             </div>
 
-                            {%endfor %}
-
-                            {%endif%}
+                            {%endfor %} {%endif%}
                         </div>
                     </div>
                 </div>
